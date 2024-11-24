@@ -62,7 +62,6 @@ The primary dataset comprises hotel reviews and ratings from TripAdvisor. This d
     accuracy                           0.75      5842
    macro avg       0.57      0.57      0.57      5842
 weighted avg       0.76      0.75      0.76      5842
-  ```
 
 #### Logistic Regression:
 - **Time Taken:** 1.88 seconds
@@ -78,8 +77,7 @@ weighted avg       0.76      0.75      0.76      5842
     accuracy                           0.81      5842
    macro avg       0.65      0.63      0.64      5842
 weighted avg       0.81      0.81      0.81      5842
-  ```
-
+  ``
 #### Random Forest:
 - **Time Taken:** 122.37 seconds
 - **Accuracy:** 80.60%
@@ -94,8 +92,7 @@ weighted avg       0.81      0.81      0.81      5842
     accuracy                           0.81      5842
    macro avg       0.67      0.49      0.50      5842
 weighted avg       0.76      0.81      0.75      5842
-  ```
-
+  ``
 #### K-Nearest Neighbors:
 - **Time Taken:** 129.68 seconds
 - **Accuracy:** 36.06%
@@ -110,8 +107,7 @@ weighted avg       0.76      0.81      0.75      5842
     accuracy                           0.36      5842
    macro avg       0.42      0.43      0.32      5842
 weighted avg       0.70      0.36      0.42      5842
-  ```
-
+  ``
 ## Next Steps
 1. Incorporate additional features such as hotel-specific attributes or reviewer demographics.
 2. Experiment with deep learning models, such as LSTMs or Transformers, to capture complex linguistic patterns.
@@ -121,12 +117,7 @@ weighted avg       0.70      0.36      0.42      5842
 1. **Notebook 1: Exploratory Data Analysis (EDA)**
    - Preprocessing steps and visualizations.
    - [Link to Notebook 1](#)
-2. **Notebook 2: Model Training and Evaluation**
-   - Model implementation, hyperparameter tuning, and performance metrics.
-   - [Link to Notebook 2](#)
-3. **Notebook 3: Insights and Recommendations**
-   - Analysis of top words and their association with ratings.
-   - [Link to Notebook 3](#)
+
 
 ## Contact and Further Information
-For further inquiries, please reach out at [Your Contact Information].
+For further inquiries, please reach out at mcron10@wgu.edu
