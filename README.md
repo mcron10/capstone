@@ -108,46 +108,46 @@ weighted avg       0.76      0.81      0.75      5842
    macro avg       0.42      0.43      0.32      5842
 weighted avg       0.70      0.36      0.42      5842
 
-#### Installation Instructions
+### Installation Instructions
 
 Before running the code, ensure all required libraries are installed. Below is a categorized list of libraries commonly used for data analytics and machine learning projects, along with installation instructions.
 Common Libraries for Data Analytics and Machine Learning
 
-### Standard Libraries (Included in Python Standard Library):
+#### Standard Libraries (Included in Python Standard Library):
         time
         re
 
-### Numerical and Data Manipulation Libraries:
+#### Numerical and Data Manipulation Libraries:
         numpy
         pandas
 
-### Natural Language Processing Libraries:
+#### Natural Language Processing Libraries:
         nltk
         textblob
         spellchecker
         symspellpy
         pycountry
 
-### Machine Learning Libraries:
+#### Machine Learning Libraries:
         scikit-learn (sklearn)
         Additional Models: GradientBoostingClassifier, AdaBoostClassifier, ExtraTreesClassifier, KNeighborsClassifier, MLPClassifier, LinearDiscriminantAnalysis
 
-### Oversampling Libraries:
+#### Oversampling Libraries:
         imbalanced-learn (imblearn)
 
-### Visualization Libraries:
+#### Visualization Libraries:
         matplotlib
         seaborn
 
-### Parallel Processing Libraries:
+#### Parallel Processing Libraries:
         pandarallel
 
-### Other Libraries:
+#### Other Libraries:
         pkg_resources
         collections.Counter
         
-#### Installation Methods
-Using pip (Preferred for Most Libraries)
+### Installation Methods
+#### Using pip (Preferred for Most Libraries)
 
 Run the following commands in your terminal or Jupyter Notebook to install the required libraries:
 
@@ -160,8 +160,6 @@ If you use the Anaconda distribution, you can install most of the libraries usin
 conda install numpy pandas nltk scikit-learn matplotlib seaborn
 conda install -c conda-forge textblob symspellpy pycountry pandarallel spellchecker imbalanced-learn
 
-
-  `
 ## Next Steps
 The preferred model for this project is Logistic Regression due to its highest accuracy (81.4%) and strong performance across all classes, as shown in the classification reports. It balances precision and recall effectively and is computationally efficient compared to other models like Random Forest and K-Nearest Neighbors. Random Forest, while competitive in accuracy, struggled with recall for specific classes and had significantly longer training times, making it less practical.
 
