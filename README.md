@@ -113,47 +113,47 @@ weighted avg       0.70      0.36      0.42      5842
 Before running the code, ensure all required libraries are installed. Below is a categorized list of libraries commonly used for data analytics and machine learning projects, along with installation instructions.
 Common Libraries for Data Analytics and Machine Learning
 
-    Standard Libraries (Included in Python Standard Library):
+### Standard Libraries (Included in Python Standard Library):
         time
         re
 
-    Numerical and Data Manipulation Libraries:
+### Numerical and Data Manipulation Libraries:
         numpy
         pandas
 
-    Natural Language Processing Libraries:
+### Natural Language Processing Libraries:
         nltk
         textblob
         spellchecker
         symspellpy
         pycountry
 
-    Machine Learning Libraries:
+### Machine Learning Libraries:
         scikit-learn (sklearn)
         Additional Models: GradientBoostingClassifier, AdaBoostClassifier, ExtraTreesClassifier, KNeighborsClassifier, MLPClassifier, LinearDiscriminantAnalysis
 
-    Oversampling Libraries:
+### Oversampling Libraries:
         imbalanced-learn (imblearn)
 
-    Visualization Libraries:
+### Visualization Libraries:
         matplotlib
         seaborn
 
-    Parallel Processing Libraries:
+### Parallel Processing Libraries:
         pandarallel
 
-    Other Libraries:
+### Other Libraries:
         pkg_resources
         collections.Counter
         
-Installation Methods
+#### Installation Methods
 Using pip (Preferred for Most Libraries)
 
 Run the following commands in your terminal or Jupyter Notebook to install the required libraries:
 
 pip install numpy pandas nltk textblob symspellpy pycountry scikit-learn imbalanced-learn matplotlib seaborn pandarallel spellchecker
 
-Using conda (For Anaconda Users)
+#### Using conda (For Anaconda Users)
 
 If you use the Anaconda distribution, you can install most of the libraries using conda:
 
