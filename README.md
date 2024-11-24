@@ -167,11 +167,10 @@ Next steps for the final capstone submission include finalizing Logistic Regress
 
 To ensure completeness, the project will meet all rubric criteria, including clean code, organized documentation, and visualizations. The GitHub repository will include structured folders, the final model, and relevant scripts. Finally, cross-validation and testing on unseen data may be performed to confirm stability and generalizability. These steps will ensure a polished and comprehensive capstone submission.
 
-## Outline of Project
-1. **Notebook 1: Exploratory Data Analysis (EDA)**
-   - Preprocessing steps and visualizations.
-   - [Link to Notebook 1](#)
-
+## Links
+1. **Notebook :- capstone-module-20.ipynb **
+   - can be found here
+   - https://github.com/mcron10/capstone.git
 
 ## Contact and Further Information
 For further inquiries, please reach out at mcron10@wgu.edu
