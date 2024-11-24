@@ -109,9 +109,11 @@ weighted avg       0.76      0.81      0.75      5842
 weighted avg       0.70      0.36      0.42      5842
   ``
 ## Next Steps
-1. Incorporate additional features such as hotel-specific attributes or reviewer demographics.
-2. Experiment with deep learning models, such as LSTMs or Transformers, to capture complex linguistic patterns.
-3. Explore interpretability methods like SHAP to provide actionable insights into model predictions.
+The preferred model for this project is Logistic Regression due to its highest accuracy (81.4%) and strong performance across all classes, as shown in the classification reports. It balances precision and recall effectively and is computationally efficient compared to other models like Random Forest and K-Nearest Neighbors. Random Forest, while competitive in accuracy, struggled with recall for specific classes and had significantly longer training times, making it less practical.
+
+Next steps for the final capstone submission include finalizing Logistic Regression as the selected model and documenting its hyperparameters ({'C': 0.01}). Additional visualizations, such as confusion matrices and ROC curves, will be included to support the results. The analysis should also highlight key features influencing predictions, such as significant review themes or sentiments. The README.md will be updated with these findings and links to the final Jupyter Notebooks, emphasizing actionable insights for non-technical audiences.
+
+To ensure completeness, the project will meet all rubric criteria, including clean code, organized documentation, and visualizations. The GitHub repository will include structured folders, the final model, and relevant scripts. Finally, cross-validation and testing on unseen data may be performed to confirm stability and generalizability. These steps will ensure a polished and comprehensive capstone submission.
 
 ## Outline of Project
 1. **Notebook 1: Exploratory Data Analysis (EDA)**
