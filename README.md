@@ -16,11 +16,13 @@ In the hospitality industry, understanding the key factors that lead to customer
 
 ## Research Question
 
-Primary Question: Can the textual content of TripAdvisor hotel reviews accurately predict a customer’s overall satisfaction rating, and can simplifying the rating scale improve model performance?
+Primary Question:
+Can the textual content of TripAdvisor hotel reviews accurately predict a customer’s overall satisfaction rating, and can simplifying the rating scale improve model performance?
 
 ## Data Sources
 
-TripAdvisor Hotel Reviews: A dataset of textual reviews paired with numerical ratings (1 to 5). This dataset offers a range of customer feedback and sentiment.
+TripAdvisor Hotel Reviews:
+A dataset of textual reviews paired with numerical ratings (1 to 5). This dataset offers a range of customer feedback and sentiment.
 
 No additional external datasets were used in this analysis.
 
