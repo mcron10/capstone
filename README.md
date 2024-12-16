@@ -33,34 +33,38 @@ Convert processed text into numerical feature vectors using TF-IDF.
 Incorporate numeric features (word_count, text_length) if beneficial.
 
 ### Class Imbalance Handling:
-        Experiment with adjusting the rating scale from 5 classes (1, 2, 3, 4, 5) to 3 classes (1, 3, 5) by mapping 4→5 and 2→1.
-        Use oversampling techniques (e.g., ADASYN, SMOTE) to balance classes and improve model training stability.
+Experiment with adjusting the rating scale from 5 classes (1, 2, 3, 4, 5) to 3 classes (1, 3, 5) by mapping 4→5 and 2→1.
+Use oversampling techniques (e.g., ADASYN, SMOTE) to balance classes and improve model training stability.
 
 ### Models & Hyperparameter Tuning:
-        Evaluate multiple machine learning models (Naive Bayes, Logistic Regression, Random Forest, K-Nearest Neighbors).
-        Use GridSearchCV for hyperparameter tuning with 3-fold cross-validation.
-        Assess models using accuracy, precision, recall, F1-score, and training time.
+Evaluate multiple machine learning models (Naive Bayes, Logistic Regression, Random Forest, K-Nearest Neighbors).
+Use GridSearchCV for hyperparameter tuning with 3-fold cross-validation.
+Assess models using accuracy, precision, recall, F1-score, and training time.
 
 ### Validation with Synthetic Data:
-        Test models on synthetic reviews (good, neutral, bad) to ensure that predictions align with intuitive expectations.
+Test models on synthetic reviews (good, neutral, bad) to ensure that predictions align with intuitive expectations.
 
-## Results
+### Results
+The following results were taken with the spellchecker on and all stop words enabled.
 
-### Here are the results when all 5 rating were in place
+#### Model Comparison: 5 Class Rating
+Logistic Regression stands out for accuracy, while Naive Bayes and Random Forest offer more efficient training times at a slight cost to performance. KNN, however, does not compare favorably to the other approaches in this scenario.
 
-Model                        Accuracy    Time (s)                                            
-Naive Bayes                  0.554947    14.989442   
-Logistic Regression          0.592776    854.818252 
-Random Forest                0.563163    296.079400   
-K-Nearest Neighbors          0.363745    23.028485   
+                         Model  Accuracy    Time (s)  \
+        0          Naive Bayes  0.554947   14.989442   
+        1  Logistic Regression  0.592776  854.818252   
+        2        Random Forest  0.563163  296.079400   
+        3  K-Nearest Neighbors  0.363745   23.0
 
-### Here are the results when rating are reduced to 3 ratings
-                                                                         
-Model                        Accuracy     Time (s) 
-Naive Bayes                  0.826772     11.743616   
-Logistic Regression          0.848853     179.576612 
-Random Forest                0.825745     186.171369   
-K-Nearest Neighbors          0.687265     18.697746   
+#### Model Comparison: 3 Class Rating
+Under the 3-class rating system, Logistic Regression leads in accuracy, while Naive Bayes provides a near-competitive performance in a fraction of the training time. Random Forest also remains a solid middle-ground choice. KNN, though improved, still lags behind. Gradient Boosting is powerful but demands extensive computation, making it a potential choice only if the highest accuracy is absolutely necessary and resource constraints are minimal.
+
+                         Model  Accuracy     Time (s)  \
+        0          Naive Bayes  0.826772    11.743616   
+        1  Logistic Regression  0.848853   179.576612   
+        2        Random Forest  0.825745   186.171369   
+        3  K-Nearest Neighbors  0.687265    18.697746   
+        4    Gradient Boosting  0.838583  4169.587689   
 
 ### Best Performance on Three-Class System:
 After reducing the rating categories to (1, 3, 5), the models, particularly Logistic Regression, improved in accuracy and provided more stable performance metrics.
@@ -85,11 +89,10 @@ Integrating other data (e.g., hotel metadata, reviewer profiles) or experimentin
 The main analysis notebook (capstone-module-final.ipynb) includes all preprocessing, modeling, evaluation, and visualizations.
 
 ### Repository Structure:
-README.md (this file)
-data/ (contains the dataset)
-notebooks/ (the Jupyter notebook)
-models/ (saved trained models)
-plots/ (any saved visualizations)
+        README.md (this file)
+        data/ (contains the dataset)
+        notebooks/ (the Jupyter notebook)
+        models/ (saved trained models)
 
 The repository avoids unnecessary files and uses descriptive directory and file names.
 
@@ -98,19 +101,21 @@ The repository avoids unnecessary files and uses descriptive directory and file 
 Clone the repository and navigate to the project directory.
 Install dependencies:
 
-pip install numpy pandas nltk textblob symspellpy pycountry scikit-learn imbalanced-learn matplotlib seaborn pandarallel spellchecker
+        pip install numpy pandas nltk textblob symspellpy pycountry scikit-learn imbalanced-learn matplotlib seaborn pandarallel spellchecker
 
 Launch Jupyter Notebook:
 
-    jupyter notebook
+        jupyter notebook
 
-    Open capstone-module-final.ipynb and run cells in order.
+Open capstone-module-final.ipynb and run cells in order.
 
 ## Contact
 
 ## Links
-Notebook :- capstone-module-final.ipynb **
+Notebook :- capstone-module-final.ipynb
+
 can be found here
+
 https://github.com/mcron10/capstone.git
 
 ## Contact and Further Information
