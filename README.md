@@ -5,172 +5,133 @@
 Mark Cronin
 
 ## Executive Summary
-This project explores how the sentiment, themes, and specific content within TripAdvisor hotel reviews can predict a customer’s overall satisfaction rating. Using Natural Language Processing (NLP) and machine learning, we analyze textual reviews to uncover patterns and correlations with ratings, aiming to create a model that supports hotel managers in prioritizing improvements and addressing common issues effectively.
+
+This project explores how the textual content of TripAdvisor hotel reviews can predict a customer's overall satisfaction rating (originally from 1 to 5). By processing the review text, extracting features using TF-IDF, and addressing class imbalances through oversampling, the aim is to identify which words, themes, and sentiments correlate strongly with particular ratings.
+
+Our results show that traditional machine learning models (e.g., Logistic Regression, Naive Bayes, Random Forest) perform reasonably well, especially when the rating scale is simplified from five classes to three classes (e.g., mapping 4 → 5 and 2 → 1), resulting in a more balanced classification task. However, when retaining all five rating categories, models encounter more difficulties due to class imbalance and subtle differences between intermediate ratings. This suggests that while our current approach provides insights and a helpful starting point, future enhancements or more sophisticated NLP models might further improve accuracy and interpretability.
 
 ## Rationale
-Understanding which aspects of a hotel experience resonate positively or negatively with customers is crucial in the competitive hospitality industry. Customer reviews significantly influence booking decisions, and hotels must identify actionable insights from these reviews. By systematically analyzing review content, this project provides a measurable framework to enhance guest experiences.
+
+In the hospitality industry, understanding the key factors that lead to customer satisfaction is crucial. Online reviews influence booking decisions, and extracting actionable insights from these reviews can guide service improvements. This project’s data-driven approach enables hotel managers to focus on what matters most to guests, increasing the likelihood of positive experiences and favorable reviews.
 
 ## Research Question
-Can the sentiment, themes, and specific content within TripAdvisor hotel reviews accurately predict the customer’s overall rating?
+
+Primary Question: Can the textual content of TripAdvisor hotel reviews accurately predict a customer’s overall satisfaction rating, and can simplifying the rating scale improve model performance?
 
 ## Data Sources
-The primary dataset comprises hotel reviews and ratings from TripAdvisor. This dataset includes thousands of reviews, offering a broad spectrum of customer feedback. Supplementary data on hotel attributes or reviewer profiles may also be considered if necessary.
+
+TripAdvisor Hotel Reviews: A dataset of textual reviews paired with numerical ratings (1 to 5). This dataset offers a range of customer feedback and sentiment.
+
+No additional external datasets were used in this analysis.
 
 ## Methodology
-1. **Data Adjustment:**
-   - Initial results with all five rating categories (1, 2, 3, 4, 5) were poor due to class imbalance.
-   - Ratings were consolidated: rating `4` was converted to `5` and rating `2` was converted to `1`, effectively reducing the problem to three classes (1, 3, 5) for better performance.
 
-2. **Natural Language Processing (NLP):**
-   - Preprocessing: Tokenization, stop word removal, lemmatization, and TF-IDF feature extraction.
-   - Sentiment and theme analysis to identify patterns indicative of satisfaction levels.
+### Preprocessing & Feature Engineering:
+Clean and normalize text (tokenization, removal of punctuation, stop words, and domain-specific terms).
+Lemmatize words to standardize forms.
+Convert processed text into numerical feature vectors using TF-IDF.
+Incorporate numeric features (word_count, text_length) if beneficial.
 
-3. **Machine Learning Models:**
-   - Models evaluated include Naive Bayes, Logistic Regression, Random Forests, and K-Nearest Neighbors.
-   - Grid search and cross-validation were used for hyperparameter tuning.
+### Class Imbalance Handling:
+        Experiment with adjusting the rating scale from 5 classes (1, 2, 3, 4, 5) to 3 classes (1, 3, 5) by mapping 4→5 and 2→1.
+        Use oversampling techniques (e.g., ADASYN, SMOTE) to balance classes and improve model training stability.
 
-4. **Feature Engineering:**
-   - Extracted top words and themes for each rating.
-   - Balanced class distributions using the ADASYN oversampling technique.
+### Models & Hyperparameter Tuning:
+        Evaluate multiple machine learning models (Naive Bayes, Logistic Regression, Random Forest, K-Nearest Neighbors).
+        Use GridSearchCV for hyperparameter tuning with 3-fold cross-validation.
+        Assess models using accuracy, precision, recall, F1-score, and training time.
 
-5. **Evaluation Metrics:**
-   - Accuracy, F1 score, and training time were used to assess model performance.
+### Validation with Synthetic Data:
+        Test models on synthetic reviews (good, neutral, bad) to ensure that predictions align with intuitive expectations.
 
 ## Results
 
-### Model Comparison:
-| Model                 | Accuracy | Time (s)   | Best Hyperparameters                                   |
-|-----------------------|----------|------------|-------------------------------------------------------|
-| Naive Bayes           | 0.752653 | 1.800694   | {'alpha': 10.0}                                      |
-| Logistic Regression   | 0.814447 | 1.879964   | {'C': 0.01}                                          |
-| Random Forest         | 0.806060 | 122.370477 | {'max_depth': None, 'min_samples_split': 2, 'n_estimators': 50} |
-| K-Nearest Neighbors   | 0.360664 | 129.682749 | {'metric': 'euclidean', 'n_neighbors': 3, 'weights': 'distance'} |
+### Here are the results when all 5 rating were in place
 
-### Detailed Classification Reports:
+Model Comparison:
+                 Model  Accuracy    Time (s)  \
+0          Naive Bayes  0.554947   14.989442   
+1  Logistic Regression  0.592776  854.818252   
+2        Random Forest  0.563163  296.079400   
+3  K-Nearest Neighbors  0.363745   23.028485   
 
-#### Naive Bayes:
-- **Time Taken:** 1.80 seconds
-- **Accuracy:** 75.26%
-- **Classification Report:**
-  ```
-              precision    recall  f1-score   support
+Best Hyperparameters  
+0  {'model': MultinomialNB(), 'model__alpha': 0.1, 'oversampler': SMOTE(random_state=42), 'scaler': 'passthrough'}  
+1  {'model': LogisticRegression(max_iter=10000, random_state=42, solver='saga'), 'model__C': 0.1, 'oversampler': SMOTE(random_state=42), 'scaler': MaxAbsScaler()}  
+2  {'model': RandomForestClassifier(random_state=42), 'model__max_depth': None, 'model__n_estimators': 200, 'oversampler': ADASYN(random_state=42), 'scaler': 'passthrough'}  
+3  {'model': KNeighborsClassifier(), 'model__n_neighbors': 5, 'oversampler': 'passthrough', 'scaler': 'passthrough'} 
 
-           1       0.62      0.63      0.63       901
-           3       0.21      0.24      0.22       616
-           5       0.87      0.85      0.86      4325
+### Here are the results when rating are reduced to 3 ratings
 
-    accuracy                           0.75      5842
-   macro avg       0.57      0.57      0.57      5842
-weighted avg       0.76      0.75      0.76      5842
+Model Comparison:
+                 Model  Accuracy     Time (s)  \
+0          Naive Bayes  0.826772    11.743616   
+1  Logistic Regression  0.848853   179.576612   
+2        Random Forest  0.825745   186.171369   
+3  K-Nearest Neighbors  0.687265    18.697746   
 
-#### Logistic Regression:
-- **Time Taken:** 1.88 seconds
-- **Accuracy:** 81.44%
-- **Classification Report:**
-  ```
-              precision    recall  f1-score   support
 
-           1       0.74      0.67      0.71       901
-           3       0.30      0.29      0.29       616
-           5       0.89      0.92      0.91      4325
+Best Hyperparameters  
+0  {'model': MultinomialNB(), 'model__alpha': 1.0, 'oversampler': ADASYN(random_state=42), 'scaler': MaxAbsScaler()}  
+1  {'model': LogisticRegression(max_iter=10000, random_state=42), 'model__C': 0.1, 'oversampler': SMOTE(random_state=42), 'scaler': MaxAbsScaler()}  
+2  {'model': RandomForestClassifier(random_state=42), 'model__max_depth': None, 'model__n_estimators': 200, 'oversampler': ADASYN(random_state=42), 'scaler': 'passthrough'}  
+3  {'model': KNeighborsClassifier(), 'model__n_neighbors': 5, 'oversampler': 'passthrough', 'scaler': 'passthrough'}  
+ 
+### Best Performance on Three-Class System:
+After reducing the rating categories to (1, 3, 5), the models, particularly Logistic Regression, improved in accuracy and provided more stable performance metrics.
 
-    accuracy                           0.81      5842
-   macro avg       0.65      0.63      0.64      5842
-weighted avg       0.81      0.81      0.81      5842
-  ``
-#### Random Forest:
-- **Time Taken:** 122.37 seconds
-- **Accuracy:** 80.60%
-- **Classification Report:**
-  ```
-              precision    recall  f1-score   support
+### Challenges with All Five Classes:
+Retaining the full 1-to-5 rating scale introduced complexity. Models struggled with intermediate classes due to subtle differences and class imbalance.
 
-           1       0.83      0.46      0.59       901
-           3       0.38      0.01      0.02       616
-           5       0.81      0.99      0.89      4325
+### Insights & Actionable Items:
+The analysis highlights key words and themes associated with high satisfaction (e.g., "clean", "friendly") and dissatisfaction (e.g., "dirty", "rude"). Such insights can guide hotels to prioritize improvements.
 
-    accuracy                           0.81      5842
-   macro avg       0.67      0.49      0.50      5842
-weighted avg       0.76      0.81      0.75      5842
-  ``
-#### K-Nearest Neighbors:
-- **Time Taken:** 129.68 seconds
-- **Accuracy:** 36.06%
-- **Classification Report:**
-  ```
-              precision    recall  f1-score   support
+## Future Work
 
-           1       0.26      0.30      0.28       901
-           3       0.13      0.65      0.21       616
-           5       0.87      0.33      0.48      4325
+### Advanced Models (CNNs, BERT):
+Although not explored in this notebook, future research could involve more advanced NLP models, such as Convolutional Neural Networks (CNNs) or transformer-based models like BERT. These models often handle complex linguistic patterns more effectively and may yield better results, especially when dealing with the full 5-class rating system.
 
-    accuracy                           0.36      5842
-   macro avg       0.42      0.43      0.32      5842
-weighted avg       0.70      0.36      0.42      5842
+### Additional Features & Data:
+Integrating other data (e.g., hotel metadata, reviewer profiles) or experimenting with different text representations and embeddings could further enhance performance and insights.
 
-### Installation Instructions
+## Project Organization
 
-Before running the code, ensure all required libraries are installed. Below is a categorized list of libraries commonly used for data analytics and machine learning projects, along with installation instructions.
-Common Libraries for Data Analytics and Machine Learning
+### Notebook:
+The main analysis notebook (capstone-module-final.ipynb) includes all preprocessing, modeling, evaluation, and visualizations.
 
-#### Standard Libraries (Included in Python Standard Library):
-        time
-        re
+### Repository Structure:
+README.md (this file)
+data/ (contains the dataset)
+notebooks/ (the Jupyter notebook)
+models/ (saved trained models)
+plots/ (any saved visualizations)
 
-#### Numerical and Data Manipulation Libraries:
-        numpy
-        pandas
+The repository avoids unnecessary files and uses descriptive directory and file names.
 
-#### Natural Language Processing Libraries:
-        nltk
-        textblob
-        spellchecker
-        symspellpy
-        pycountry
+## How to Run
 
-#### Machine Learning Libraries:
-        scikit-learn (sklearn)
-        Additional Models: GradientBoostingClassifier, AdaBoostClassifier, ExtraTreesClassifier, KNeighborsClassifier, MLPClassifier, LinearDiscriminantAnalysis
-
-#### Oversampling Libraries:
-        imbalanced-learn (imblearn)
-
-#### Visualization Libraries:
-        matplotlib
-        seaborn
-
-#### Parallel Processing Libraries:
-        pandarallel
-
-#### Other Libraries:
-        pkg_resources
-        collections.Counter
-        
-### Installation Methods
-#### Using pip (Preferred for Most Libraries)
-
-Run the following commands in your terminal or Jupyter Notebook to install the required libraries:
+Clone the repository and navigate to the project directory.
+Install dependencies:
 
 pip install numpy pandas nltk textblob symspellpy pycountry scikit-learn imbalanced-learn matplotlib seaborn pandarallel spellchecker
 
-#### Using conda (For Anaconda Users)
+Launch Jupyter Notebook:
 
-If you use the Anaconda distribution, you can install most of the libraries using conda:
+    jupyter notebook
 
-conda install numpy pandas nltk scikit-learn matplotlib seaborn
-conda install -c conda-forge textblob symspellpy pycountry pandarallel spellchecker imbalanced-learn
+    Open capstone-module-final.ipynb and run cells in order.
 
-## Next Steps
-The preferred model for this project is Logistic Regression due to its highest accuracy (81.4%) and strong performance across all classes, as shown in the classification reports. It balances precision and recall effectively and is computationally efficient compared to other models like Random Forest and K-Nearest Neighbors. Random Forest, while competitive in accuracy, struggled with recall for specific classes and had significantly longer training times, making it less practical.
-
-Next steps for the final capstone submission include finalizing Logistic Regression as the selected model and documenting its hyperparameters ({'C': 0.01}). Additional visualizations, such as confusion matrices and ROC curves, will be included to support the results. The analysis should also highlight key features influencing predictions, such as significant review themes or sentiments. The README.md will be updated with these findings and links to the final Jupyter Notebooks, emphasizing actionable insights for non-technical audiences.
-
-To ensure completeness, the project will meet all rubric criteria, including clean code, organized documentation, and visualizations. The GitHub repository will include structured folders, the final model, and relevant scripts. Finally, cross-validation and testing on unseen data may be performed to confirm stability and generalizability. These steps will ensure a polished and comprehensive capstone submission.
+## Contact
 
 ## Links
-1. **Notebook :- capstone-module-20.ipynb **
-   - can be found here
-   - https://github.com/mcron10/capstone.git
+Notebook :- capstone-module-final.ipynb **
+can be found here
+https://github.com/mcron10/capstone.git
 
 ## Contact and Further Information
 For further inquiries, please reach out at mcron10@wgu.edu
+
+
+
+
+
