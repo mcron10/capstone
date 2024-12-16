@@ -29,8 +29,10 @@ No additional external datasets were used in this analysis.
 ## Methodology
 
 ### Preprocessing & Feature Engineering:
+There was not missing data.
 Clean and normalize text (tokenization, removal of punctuation, stop words, and domain-specific terms).
 Lemmatize words to standardize forms.
+Spell Check words.
 Convert processed text into numerical feature vectors using TF-IDF.
 Incorporate numeric features (word_count, text_length) if beneficial.
 
