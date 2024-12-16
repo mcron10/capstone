@@ -48,35 +48,20 @@ Incorporate numeric features (word_count, text_length) if beneficial.
 
 ### Here are the results when all 5 rating were in place
 
-Model Comparison:
-                 Model  Accuracy    Time (s)  \
-0          Naive Bayes  0.554947   14.989442   
-1  Logistic Regression  0.592776  854.818252   
-2        Random Forest  0.563163  296.079400   
-3  K-Nearest Neighbors  0.363745   23.028485   
-
-Best Hyperparameters  
-0  {'model': MultinomialNB(), 'model__alpha': 0.1, 'oversampler': SMOTE(random_state=42), 'scaler': 'passthrough'}  
-1  {'model': LogisticRegression(max_iter=10000, random_state=42, solver='saga'), 'model__C': 0.1, 'oversampler': SMOTE(random_state=42), 'scaler': MaxAbsScaler()}  
-2  {'model': RandomForestClassifier(random_state=42), 'model__max_depth': None, 'model__n_estimators': 200, 'oversampler': ADASYN(random_state=42), 'scaler': 'passthrough'}  
-3  {'model': KNeighborsClassifier(), 'model__n_neighbors': 5, 'oversampler': 'passthrough', 'scaler': 'passthrough'} 
+Model                        Accuracy    Time (s)                                            
+Naive Bayes                  0.554947    14.989442   
+Logistic Regression          0.592776    854.818252 
+Random Forest                0.563163    296.079400   
+K-Nearest Neighbors          0.363745    23.028485   
 
 ### Here are the results when rating are reduced to 3 ratings
+                                                                         
+Model                        Accuracy     Time (s) 
+Naive Bayes                  0.826772     11.743616   
+Logistic Regression          0.848853     179.576612 
+Random Forest                0.825745     186.171369   
+K-Nearest Neighbors          0.687265     18.697746   
 
-Model Comparison:
-                 Model  Accuracy     Time (s)  \
-0          Naive Bayes  0.826772    11.743616   
-1  Logistic Regression  0.848853   179.576612   
-2        Random Forest  0.825745   186.171369   
-3  K-Nearest Neighbors  0.687265    18.697746   
-
-
-Best Hyperparameters  
-0  {'model': MultinomialNB(), 'model__alpha': 1.0, 'oversampler': ADASYN(random_state=42), 'scaler': MaxAbsScaler()}  
-1  {'model': LogisticRegression(max_iter=10000, random_state=42), 'model__C': 0.1, 'oversampler': SMOTE(random_state=42), 'scaler': MaxAbsScaler()}  
-2  {'model': RandomForestClassifier(random_state=42), 'model__max_depth': None, 'model__n_estimators': 200, 'oversampler': ADASYN(random_state=42), 'scaler': 'passthrough'}  
-3  {'model': KNeighborsClassifier(), 'model__n_neighbors': 5, 'oversampler': 'passthrough', 'scaler': 'passthrough'}  
- 
 ### Best Performance on Three-Class System:
 After reducing the rating categories to (1, 3, 5), the models, particularly Logistic Regression, improved in accuracy and provided more stable performance metrics.
 
